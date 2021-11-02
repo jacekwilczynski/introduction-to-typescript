@@ -17,6 +17,8 @@ const customers: Customer[] = [
 ];
 
 // FUNCTIONS
+
+// You can replace CustomerProcessorType with CustomerProcessorInterface.
 function processCustomers(customers: Customer[], processors: CustomerProcessorType[]): void {
     for (const customer of customers) {
         for (const processor of processors) {

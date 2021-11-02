@@ -1,12 +1,15 @@
 //
 // Union type
 //
-function f1(arg: string | number): void {
+
+type StringOrNumber = string | number;
+
+function f1(arg: StringOrNumber): void {
 }
 
 f1(1);
 f1('s');
-f1(false);
+f1(false); // not allowed
 
 
 
@@ -27,8 +30,8 @@ type AB = A & B;
 function f2(arg: AB): void {
 }
 
-f2({ first: 1 });
-f2({ second: 1 });
+f2({ first: 1 }); // not allowed
+f2({ second: 1 }); // not allowed
 f2({ first: 1, second: 1 });
 
 
@@ -37,5 +40,17 @@ f2({ first: 1, second: 1 });
 // Crazy generics
 //
 
-function f3(people: { id: string, name: string, dateOfBirth: Date, friends: Set<{ personId: string, friendsSince: Date }> }[]) {
+interface Friend {
+    personId: string;
+    friendsSince: Date;
+}
+
+interface PersonAbc {
+    id: string;
+    name: string;
+    dateOfBirth: Date;
+    friends: Set<Friend>;
+}
+
+function f3(people: PersonAbc[]) {
 }

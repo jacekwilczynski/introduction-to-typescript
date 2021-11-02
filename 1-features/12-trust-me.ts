@@ -17,4 +17,5 @@ if (Math.random() >= 0.5) {
     variable = { name: 'value' };
 }
 
-showSummary(variable);
+showSummary(variable as OrderSummary);
+showSummary(<OrderSummary>variable);

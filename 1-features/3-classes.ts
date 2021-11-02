@@ -1,19 +1,20 @@
 class Person {
-    static MINIMUM_AGE = 18;
+    private static readonly MINIMUM_AGE: number = 18;
 
-    constructor(name, age) {
-        this.name = name;
-        this.age = age;
+    public constructor(
+        private readonly name: string,
+        private readonly age: number
+    ) {
         this.verifyAge();
     }
 
-    getIntroduction() {
+    public getIntroduction(): string {
         return `Hi, my name is ${this.name}, and I'm ${this.age} years old.`;
     }
 
-    verifyAge() {
+    private verifyAge(): void {
         if (this.age < Person.MINIMUM_AGE) {
-            throw Error(`Sorry, adults only.`);
+            throw Error('Sorry, adults only.');
         }
     }
 }

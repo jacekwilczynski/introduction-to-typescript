@@ -4,7 +4,7 @@ interface EntityIndexer {
     index(entity: object): void;
 }
 
-class CategoryIndexer implements EntityIndexer {
+class CategoryIndexer {
     index(entity: object): void {
     }
 }
@@ -17,4 +17,7 @@ class ProductIndexer implements EntityIndexer {
 const indexers: EntityIndexer[] = [
     new CategoryIndexer(),
     new ProductIndexer(),
+    {
+        index: (entity) => {}
+    }
 ];

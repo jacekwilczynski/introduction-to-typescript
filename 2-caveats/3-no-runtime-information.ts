@@ -1,9 +1,19 @@
-// While classes exist in JavaScript, interfaces, type aliases, and enums do not, so you can't check for them with `instanceof`.
+// Although classes exist in JavaScript, interfaces, type aliases, and enums do not, so you can't check for them with `instanceof`.
 
-class OrderNotFoundError extends Error {
+interface OrderNotFoundErrorInterface {
+    type: 'OrderNotFoundError';
 }
 
-class OrderNotCancellableError extends Error {
+interface OrderNotCancellableErrorInterface {
+    type: 'OrderNotCancellableError';
+}
+
+class OrderNotFoundError extends Error implements OrderNotFoundErrorInterface {
+    public readonly type = 'OrderNotFoundError';
+}
+
+class OrderNotCancellableError extends Error implements OrderNotCancellableErrorInterface {
+    public readonly type = 'OrderNotCancellableError';
 }
 
 function cancelOrder() {
@@ -17,5 +27,10 @@ function cancelOrder() {
 try {
     cancelOrder();
 } catch (error) {
-    // ???
+    if (error instanceof OrderNotCancellableError) {
+    }
+
+    // can't do: if (error instanceof OrderNotFoundErrorInterface)
+    if (error.type === 'OrderNotCancellableError') {
+    }
 }
